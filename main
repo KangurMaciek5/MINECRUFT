@@ -6,6 +6,15 @@ app = Ursina()
 player = FirstPersonController()
 Sky()
 
+window.exit_button.visible = False #nie widać x w rogu full screen zabawa
+
+def update():
+  #klikanie myszą aktywuje funkcje zmiany pozycji ręki
+  if held_keys['left mouse'] or held_keys['right mouse']:
+    hand.action()
+  else:
+    hand.rest()
+
 #normal_grass_and_stone
 #update_z_drzewkami #@@
 boxes = []
@@ -77,5 +86,23 @@ def input(key):
       if key == 'left mouse down':
         boxes.remove(box)
         destroy(box)
+      
+  #jak naciśniesz escape to wyłącza mc (pozniej jakies ostrzezenie dodam moze)
+  if key == 'escape':
+    application.quit()
+        
+#reka 
+class Hand(Entity):
+  def __init__(self):
+    super().__init__(parent=camera.ui,model='cube',scale=(0.16,0.6,0.15),color=color.white,
+                     texture='handy',rotation=(40,340,0),position=(0.45,-0.4))
+    
+  def action(self):
+    self.position=(0.35,-0.37)
+
+  def rest(self):
+    self.position=(0.45,-0.4)
+
+hand=Arm()
 
 app.run()
