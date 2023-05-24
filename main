@@ -1,5 +1,5 @@
 from ursina import *
-# import random
+# import random - idk czy to bedzie potrzebne
 import noise
 from ursina.prefabs.first_person_controller import FirstPersonController
 app = Ursina()
