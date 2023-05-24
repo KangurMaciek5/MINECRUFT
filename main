@@ -7,9 +7,9 @@ player = FirstPersonController()
 Sky()
 
 #normal_grass_and_stone
-#update_z_drzewkami
+#update_z_drzewkami #@@
 boxes = []
-tree=[]
+tree=[] #@@
 #generacja_terenu
 for i in range(50):
     for j in range(50):
@@ -54,7 +54,7 @@ for i in range(50):
             for k in range(height+1, height+4):
                 tree=Entity(model='cube', position=(j,k,i),
                               texture='tree.png', parent=scene, origin_y=0.5)
-                trees.append(tree) 
+                trees.append(tree) #@@
         
 #fancy_grass_gorki_pagorki_i_inne_doly
 for i in range(50):
