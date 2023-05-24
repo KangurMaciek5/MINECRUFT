@@ -1,0 +1,69 @@
+from ursina import *
+# import random
+import noise
+from ursina.prefabs.first_person_controller import FirstPersonController
+app = Ursina()
+player = FirstPersonController()
+Sky()
+
+#normal_grass_and_stone
+boxes = []
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.white, model='cube', position=(j,-6,i),
+            texture='stone.png', parent=scene, origin_y=0.5)
+        boxes.append(box)
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.white, model='cube', position=(j,-5,i),
+            texture='stone.png', parent=scene, origin_y=0.5)
+        boxes.append(box)
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.white, model='cube', position=(j,-4,i),
+            texture='stone.png', parent=scene, origin_y=0.5)
+        boxes.append(box)
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.white, model='cube', position=(j,-3,i),
+            texture='dirt.png', parent=scene, origin_y=0.5)
+        boxes.append(box)
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.white, model='cube', position=(j,-2,i),
+            texture='dirt.png', parent=scene, origin_y=0.5)
+        boxes.append(box)
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.white, model='cube', position=(j,-1,i),
+            texture='dirt.png', parent=scene, origin_y=0.5)
+        boxes.append(box)  
+
+for i in range(50):
+    for j in range(50):
+        box = Button(color=color.green, model='cube', position=(j,0,i),
+            texture='grass_block_top.png', parent=scene, origin_y=0.5)
+        boxes.append(box)
+        
+#fancy_grass_gorki_pagorki_i_inne_doly
+for i in range(50):
+    for j in range(50):
+        height = int(noise.pnoise2(i / 20, j / 20, octaves=6) * 7)
+        for k in range(1, height + 1):
+            box = Button(color=color.green, model='cube', position=(j,k,i),
+                texture='grass_block_top.png', parent=scene, origin_y=0.5)
+            boxes.append(box)
+
+
+def input(key):
+  for box in boxes:
+    if box.hovered:
+      if key == 'right mouse down':
+        new = Button(color=color.green, model='cube', position=box.position + mouse.normal,
+                    texture='grass_block_top.png', parent=scene, origin_y=0.5)
+        boxes.append(new)
+      if key == 'left mouse down':
+        boxes.remove(box)
+        destroy(box)
+
+app.run()
