@@ -96,8 +96,8 @@ class Animal(Entity):
             collider='box',
             position=position
         )
-        self.speed = random.uniform(0.05, 0.1)  # Set a random speed for each animal
-        self.direction = random.choice(['up', 'down', 'left', 'right'])  # Set a random initial direction
+        self.speed = random.uniform(0.03, 0.1)  
+        self.direction = random.choice(['up', 'down', 'left', 'right'])  
 
     def update(self):
         if self.direction == 'up':
@@ -109,8 +109,8 @@ class Animal(Entity):
         elif self.direction == 'right':
             self.position += (self.speed, 0, 0)
 
-        # Check if the animal should change direction
-        if random.random() < 0.01:  # Adjust this probability to control how frequently they change direction
+        # zmiana kierunku
+        if random.random() < 0.01:  # jak czesto zmieniają kierunek
             self.direction = random.choice(['up', 'down', 'left', 'right'])
 
 
@@ -134,10 +134,10 @@ def input(key):
 
 animals = []
 
-animal_pig_1 = Animal(position=(5, 1, 5), texture='pngwing.com.png')
+animal_pig_1 = Animal(position=(5, 1, 7), texture='pngwing.com.png')
 animals.append(animal_pig_1)
 
-animal_duck2 = Animal(position=(10, 1, 10), texture='pngduck.com.png')
+animal_duck2 = Animal(position=(9, 1, 10), texture='pngduck.com.png')
 animals.append(animal_duck2)
 
 animal_wolf_3 = Animal(position=(15, 1, 15), texture='pngwolf.com.png')
