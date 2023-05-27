@@ -103,6 +103,6 @@ class Hand(Entity):
   def rest(self):
     self.position=(0.45,-0.4)
 
-hand=Arm()
+hand=Hand()
 
 app.run()
