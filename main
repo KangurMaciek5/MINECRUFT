@@ -64,6 +64,10 @@ for i in range(50):
                 tree=Entity(model='cube', position=(j,k,i),
                               texture='tree.jpeg', parent=scene, origin_y=0.5)
                 trees.append(tree)
+                liscie = Entity(model='cube', position=(j, k + 1, i),
+                              texture='liscie.png', parent=scene, origin_y=0.5)
+                trees.append(liscie)
+
                 
 #fancy_grass_gorki_pagorki_i_inne_doly
 for i in range(50):
