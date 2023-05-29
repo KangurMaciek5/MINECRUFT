@@ -62,9 +62,9 @@ for i in range(50):
             height=int(noise.pnoise2(i/20, j/20, octaves=6)*7)
             for k in range(height+1, height+4):
                 tree=Entity(model='cube', position=(j,k,i),
-                              texture='tree.png', parent=scene, origin_y=0.5)
-                trees.append(tree) #@@
-        
+                              texture='tree.jpeg', parent=scene, origin_y=0.5)
+                trees.append(tree)
+                
 #fancy_grass_gorki_pagorki_i_inne_doly
 for i in range(50):
     for j in range(50):
