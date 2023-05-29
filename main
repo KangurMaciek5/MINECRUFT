@@ -15,10 +15,9 @@ def update():
   else:
     hand.rest()
 
-#normal_grass_and_stone
-#update_z_drzewkami #@@
+#normal_grass_and_stone 
 boxes = []
-tree=[] #@@
+trees=[] 
 #generacja_terenu
 for i in range(50):
     for j in range(50):
@@ -56,6 +55,7 @@ for i in range(50):
         box = Button(color=color.green, model='cube', position=(j,0,i),
             texture='grass_block_top.png', parent=scene, origin_y=0.5)
         boxes.append(box)
+#generacja drzewek
 for i in range(50):
     for j in range(50):
        if i%5==0 and j%5==0:
