@@ -29,6 +29,81 @@ def fancy_landscape(x,y,a,b,height):
       for j in range(a,b):
          box = Button(color=color.green, model='cube', position=(j, height, i), texture='grass_block_top.png', parent=scene, origin_y=0.5)
          boxes.append(box)
+######
+class Animal(Entity):
+    def __init__(self, position, texture):
+        super().__init__(
+            model='cube',
+            scale=(1, 1, 1),
+            texture=texture,
+            collider='box',
+            position=position
+        )
+        self.speed = random.uniform(0.001, 0.02)
+        self.direction = random.choice(['up', 'down', 'left', 'right'])
+        self.is_jumping = False
+        self.jump_height = 1
+
+    def update(self):
+        if self.is_jumping:
+            if self.jump_height > 0:
+                self.position += (0, self.speed * 2, 0)
+                self.jump_height -= self.speed * 2
+            else:
+                self.is_jumping = False
+                self.jump_height = 1
+
+        new_position = self.position
+        if self.direction == 'up':
+            new_position += (0, 0, self.speed)
+        elif self.direction == 'down':
+            new_position -= (0, 0, self.speed)
+        elif self.direction == 'left':
+            new_position -= (self.speed, 0, 0)
+        elif self.direction == 'right':
+            new_position += (self.speed, 0, 0)
+
+        if not self.is_within_grass_area(new_position) or self.collides_with_boxes(new_position):
+            self.change_direction()
+            new_position = self.position
+
+        self.position = new_position
+
+    def collides_with_boxes(self, position):
+        for box in boxes:
+            if self.intersects(box).hit:
+                return True
+        return False
+
+    def change_direction(self):
+        if self.direction == 'up':
+            self.direction = 'down'
+        elif self.direction == 'down':
+            self.direction = 'up'
+        elif self.direction == 'left':
+            self.direction = 'right'
+        elif self.direction == 'right':
+            self.direction = 'left'
+
+    def is_within_grass_area(self, position):
+        return (
+            grass_area[0] <= position.x < grass_area[2]
+            and grass_area[1] <= position.z < grass_area[3]
+        )
+
+    def input(self, key):
+        if key == 'space' and not self.is_jumping:
+            self.is_jumping = True
+         
+   def update():
+    for animal in animals:
+        animal.update()
+
+    for animal in animals:
+        if player.intersects(animal).hit:
+            if held_keys['left mouse']:
+                animal.position += (0, 1, 0)
+                animal.change_direction()
 
 #normal_grass_and_stone 
 boxes = []
@@ -114,7 +189,20 @@ class Hand(Entity):
 
   def rest(self):
     self.position=(0.45,-0.4)
+   
 
 hand=Hand()
+####animals
+animals = []
+grass_area = (0, 0, 20, 20)
+
+animal_pig_1 = Animal(position=(5, 1, 7), texture='pngwing.com.png')
+animals.append(animal_pig_1)
+
+animal_duck2 = Animal(position=(9, 1, 10), texture='pngduck.com.png')
+animals.append(animal_duck2)
+
+animal_wolf_3 = Animal(position=(15, 1, 15), texture='pngwolf.com.png')
+animals.append(animal_wolf_3)
 
 app.run()
