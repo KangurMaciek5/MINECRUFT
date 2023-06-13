@@ -194,15 +194,15 @@ class Hand(Entity):
 hand=Hand()
 ####animals
 animals = []
-grass_area = (0, 0, 20, 20)
+grass_area = (0, 0, 9, 10)
 
 animal_pig_1 = Animal(position=(5, 1, 7), texture='pngwing.com.png')
 animals.append(animal_pig_1)
 
-animal_duck2 = Animal(position=(9, 1, 10), texture='pngduck.com.png')
+animal_duck2 = Animal(position=(6, 1, 5), texture='pngduck.com.png')
 animals.append(animal_duck2)
 
-animal_wolf_3 = Animal(position=(15, 1, 15), texture='pngwolf.com.png')
+animal_wolf_3 = Animal(position=(7, 1, 4), texture='pngwolf.com.png')
 animals.append(animal_wolf_3)
 
 app.run()
