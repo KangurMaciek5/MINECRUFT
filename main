@@ -145,6 +145,8 @@ fancy_landscape(14,15,19,20,3)
 fancy_landscape(19,20,17,18,4)
 fancy_landscape(18,20,18,20,4)
 
+fancy_landscape(-1,22,-1,0,1)
+fancy_landscape(-1,0,-1,22,1)
 
 trees=[] 
 
